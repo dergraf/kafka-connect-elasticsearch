@@ -31,6 +31,10 @@ public class ElasticsearchSinkConnectorConfig extends AbstractConfig {
   private static final String CONNECTION_URL_DOC =
       "List of Elasticsearch HTTP connection URLs e.g. ``http://eshost1:9200,"
       + "http://eshost2:9200``.";
+  public static final String CONNECTION_PROXY_CONFIG = "connection.proxy";
+  private static final String CONNECTION_PROXY_DOC =
+      "A URL of Elasticsearch HTTP(S) proxy e.g. ``https://proxy1:443``,"
+      + " ``http://proxy2:9876``, etc. Format: (http|https)://<host>:<port>";
   public static final String CONNECTION_USERNAME_CONFIG = "connection.username";
   private static final String CONNECTION_USERNAME_DOC =
       "The username used to authenticate with Elasticsearch. "
@@ -186,6 +190,16 @@ public class ElasticsearchSinkConnectorConfig extends AbstractConfig {
         ++order,
         Width.SHORT,
         "Connection Password"
+    ).define(
+        CONNECTION_PROXY_CONFIG,
+        Type.STRING,
+        null,
+        Importance.MEDIUM,
+        CONNECTION_PROXY_DOC,
+        group,
+        ++order,
+        Width.LONG,
+        "Connection Proxy"
     ).define(
         BATCH_SIZE_CONFIG,
         Type.INT,
