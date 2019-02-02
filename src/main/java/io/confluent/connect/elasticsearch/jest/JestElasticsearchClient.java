@@ -144,7 +144,7 @@ public class JestElasticsearchClient implements ElasticsearchClient {
         try {
           String protocol = proxy.split("://")[0];
           String host = proxy.split("://")[1].split(":")[0];
-          int port = Integer.valueOf(proxy.split(":")[2]);
+          int port = Integer.parseInt(proxy.split(":")[2]);
 
           builder.proxy(new HttpHost(host, port, protocol));
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
