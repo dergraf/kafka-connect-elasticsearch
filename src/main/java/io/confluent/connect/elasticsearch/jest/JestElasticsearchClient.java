@@ -184,6 +184,8 @@ public class JestElasticsearchClient implements ElasticsearchClient {
               .map(addr -> HttpHost.create(addr)).collect(Collectors.toSet()));
     }
 
+    configureProxy(config, builder);
+
     if (config.secured()) {
       log.info("Using secured connection to {}", address);
       configureSslContext(builder, config);
@@ -213,6 +215,24 @@ public class JestElasticsearchClient implements ElasticsearchClient {
   // visible for testing
   protected void setWriteMethod(WriteMethod writeMethod) {
     this.writeMethod = writeMethod;
+  }
+
+  private void configureProxy(ElasticsearchSinkConnectorConfig config,
+                              HttpClientConfig.Builder builder) {
+    final String proxy =
+            config.getString(ElasticsearchSinkConnectorConfig.CONNECTION_PROXY_CONFIG);
+    if (proxy != null && !proxy.isEmpty()) {
+      try {
+        String protocol = proxy.split("://")[0];
+        String host = proxy.split("://")[1].split(":")[0];
+        int port = Integer.parseInt(proxy.split(":")[2]);
+
+        builder.proxy(new HttpHost(host, port, protocol));
+      } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+        throw new ConfigException("Unable to set up proxy: "
+                + "invalid proxy URL found in config: " + proxy, e);
+      }
+    }
   }
 
   /*
