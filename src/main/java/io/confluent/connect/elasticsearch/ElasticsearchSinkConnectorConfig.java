@@ -192,7 +192,8 @@ public class ElasticsearchSinkConnectorConfig extends AbstractConfig {
   // Proxy group
   public static final String PROXY_HOST_CONFIG = "proxy.host";
   public static final String PROXY_HOST_DISPLAY = "Proxy Host";
-  public static final String PROXY_HOST_DOC = "The address of the proxy host to connect through.";
+  public static final String PROXY_HOST_DOC = "The address of the proxy host to connect through. "
+      + "Supports the basic authentication scheme only.";
   public static final String PROXY_HOST_DEFAULT = "";
 
   public static final String PROXY_PORT_CONFIG = "proxy.port";
