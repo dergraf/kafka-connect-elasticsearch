@@ -57,6 +57,11 @@
             <url>${confluent.maven.repo}</url>
         </repository>
 
+        <repository>
+            <id>mulesoft</id>
+            <name>Mulesoft</name>
+            <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
