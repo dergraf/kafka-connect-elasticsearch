@@ -47,6 +47,7 @@
         <test.containers.version>1.11.4</test.containers.version>
         <kafka.connect.maven.plugin.version>0.11.1</kafka.connect.maven.plugin.version>
         <confluent.maven.repo>http://packages.confluent.io/maven/</confluent.maven.repo>
+        <aws-java-sdk.version>1.11.602</aws-java-sdk.version>
     </properties>
 
     <repositories>
@@ -54,6 +55,12 @@
             <id>confluent</id>
             <name>Confluent</name>
             <url>${confluent.maven.repo}</url>
+        </repository>
+
+        <repository>
+            <id>mulesoft</id>
+            <name>Mulesoft</name>
+            <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
         </repository>
     </repositories>
 
@@ -164,6 +171,17 @@
             <classifier>test</classifier>
             <scope>test</scope>
             <version>${kafka.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-core</artifactId>
+            <version>${aws-java-sdk.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.awslabs</groupId>
+            <artifactId>aws-request-signing-apache-interceptor</artifactId>
+            <version>b3772780da</version>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
