@@ -32,7 +32,6 @@ import org.apache.kafka.connect.errors.ConnectException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import org.apache.kafka.common.config.ConfigException;
 import org.apache.kafka.common.config.types.Password;
 
 import static io.confluent.connect.elasticsearch.jest.JestElasticsearchClient.WriteMethod;
